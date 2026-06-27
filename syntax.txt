@@ -1,0 +1,43 @@
+JAVA++ SYNTAX 2026
+
+variables - new.variables.create.stack [name] [type];
+EXAMPLE - new.variables.create.stack age type.integer = 22;
+type: type.integer, type.stringer, type.floating, type.boolean, type.characters
+const - new.constant.create.stack name type.stringer = "Bob";
+
+IF/ELSE
+
+new.if.typedefender (age == 22) {
+    print.consolewrite.puts("Hello, world"!);
+}
+new.elseif.typedefender (age > 23) {
+    input.new.users.putss("Enter number new");
+}
+new.else.typedefender {
+    return.var.in.code 1;
+    quit.program.uwu(1);
+}
+
+struct
+
+__class__ Users in {
+    Name: type.stringer:
+    age: type.ingeger:
+};
+
+LOOPING
+
+new.looping (true) { // analog while
+
+}
+
+new.for.looping (type.integer i = 0; i < 2; iplusplus ) {
+
+} // i++ = iplusplus, i-- = iminmin
+
+base lib
+
+@USING::STD
+@USING::MATH и т.д
+
+коментарии //

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Java++ (JPP)</title>
+    <style>
+        :root {
+            --bg: #f9f8fc;
+            --primary: #6d28d9;
+            --primary-glow: rgba(124, 58, 237, 0.2);
+            --accent: #a78bfa;
+            --text: #1e1826;
+            --text-muted: #5d5270;
+            --code-bg: #120e19;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
+        html { scroll-behavior: smooth; scroll-padding-top: 20px; }
+        body {
+            background: var(--bg);
+            background-image: radial-gradient(at 0% 0%, rgba(167,139,250,0.15) 0px, transparent 45%), radial-gradient(at 100% 100%, rgba(124,58,237,0.1) 0px, transparent 45%);
+            background-attachment: fixed; color: var(--text); min-height: 100vh; display: flex; flex-direction: column; align-items: center; padding: 40px 20px;
+        }
+        .container { max-width: 800px; width: 100%; }
+        header { text-align: center; margin-bottom: 35px; }
+        h1 { font-size: clamp(2.5rem, 5vw, 3.5rem); font-weight: 900; background: linear-gradient(135deg, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; }
+        .subtitle { font-size: 1.15rem; color: var(--text-muted); }
+        .nav { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-bottom: 35px; }
+        .btn { display: inline-flex; padding: 12px 28px; font-size: 0.9rem; font-weight: 700; text-decoration: none; border-radius: 12px; transition: all 0.2s ease; cursor: pointer; }
+        .btn-discord { background: #5865f2; color: #fff; box-shadow: 0 4px 14px rgba(88,101,242,0.2); }
+        .btn-discord:hover { background: #4752c4; transform: translateY(-2px); }
+        .btn-git { background: var(--primary); color: #fff; box-shadow: 0 4px 14px var(--primary-glow); }
+        .btn-git:hover { background: #7c3aed; transform: translateY(-2px); }
+        .btn-about { background: #fff; color: var(--primary); border: 2px solid rgba(124,58,237,0.15); }
+        .btn-about:hover { background: rgba(124,58,237,0.05); transform: translateY(-2px); }
+        .card { background: rgba(255,255,255,0.85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.6); border-radius: 20px; padding: 30px; box-shadow: 0 10px 30px rgba(124,58,237,0.02); margin-bottom: 25px; width: 100%; }
+        .card h2 { font-size: 1.4rem; color: var(--primary); margin-bottom: 12px; font-weight: 800; }
+        .desc { line-height: 1.6; color: var(--text); font-size: 1.1rem; font-style: italic; border-left: 4px solid var(--accent); padding-left: 12px; margin-bottom: 25px; }
+        .tabs { display: flex; gap: 6px; border-bottom: 2px solid rgba(124,58,237,0.08); padding-bottom: 8px; flex-wrap: wrap; }
+        .tab-btn { background: none; border: none; color: var(--text-muted); padding: 8px 16px; font-size: 0.9rem; font-weight: 600; cursor: pointer; border-radius: 8px; }
+        .tab-btn:hover { color: var(--primary); background: rgba(124,58,237,0.04); }
+        .tab-btn.active { color: #fff; background: var(--primary); }
+        .tab-content { display: none; width: 100%; }
+        .tab-content.active { display: block; }
+        .window { background: var(--code-bg); border-radius: 14px; overflow: hidden; margin-top: 15px; position: relative; box-shadow: 0 15px 35px rgba(0,0,0,0.2); }
+        .win-hdr { background: rgba(255,255,255,0.02); padding: 12px 18px; display: flex; align-items: center; gap: 6px; border-bottom: 1px solid rgba(255,255,255,0.03); }
+        .dot { width: 10px; height: 10px; border-radius: 50%; background: #ff5f56; }
+        .dot:nth-child(2) { background: #ffbd2e; }
+        .dot:nth-child(3) { background: #27c93f; }
+        .win-ttl { color: rgba(255,255,255,0.25); font-size: 0.75rem; font-family: monospace; margin-left: auto; }
+        .btn-copy { position: absolute; right: 12px; bottom: 12px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); color: rgba(255,255,255,0.6); padding: 6px 12px; font-size: 0.7rem; font-weight: 700; border-radius: 6px; cursor: pointer; }
+        .btn-copy:hover { background: #7c3aed; color: #fff; }
+        pre { padding: 20px; overflow-x: auto; font-family: monospace; font-size: 0.9rem; color: #e5def0; line-height: 1.5; }
+        .j-kw { color: #c084fc; font-weight: bold; }
+        .j-type { color: #60a5fa; }
+        .j-str { color: #34d399; }
+        .j-dir { color: #f43f5e; }
+        .j-num { color: #facc15; }
+        #about-me { border-left: 5px solid var(--primary); }
+        @media (max-width: 600px) { .nav { flex-direction: column; gap: 8px; } .btn { width: 100%; } .tab-btn { flex: 1 1 auto; text-align: center; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Java++ (JPP)</h1>
+            <div class="subtitle">Esoteric Language Ecosystem & Supporting Stack</div>
+        </header>
+        <nav class="nav">
+            <a href="https://discord.gg" target="_blank" class="btn btn-discord">Discord Server</a>
+            <a href="https://github.com" target="_blank" class="btn btn-git">GIT Source</a>
+            <a href="#about-me" class="btn btn-about">ABOUT</a>
+        </nav>
+        <main class="card">
+            <h2>🔮 Specifications</h2>
+            <blockquote class="desc">
+                "Java++ is an esoteric programming language that mocks verbosity while preserving the code"
+            </blockquote>
+            <div class="tabs">
+                <button class="tab-btn active" onclick="tab(event, 'hello')">Hello World</button>
+                <button class="tab-btn" onclick="tab(event, 'struct')">Classes (__class__)</button>
+            </div>
+            <div id="hello" class="tab-content active">
+                <div class="window">
+                    <div class="win-hdr"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="win-ttl">hello.jpp</div></div>
+                    <pre><code id="txt-hello"><span class="j-dir">@USING::STD</span>
+
+<span class="j-kw">print.consolewrite.puts</span>(<span class="j-str">"Hello, world"</span>!);
+
+<span class="j-kw">quit.program.uwu</span>(<span class="j-num">0</span>);</code></pre>
+                    <button class="btn-copy" onclick="copy('hello')">Copy Code</button>
+                </div>
+            </div>
+            <div id="struct" class="tab-content">
+                <div class="window">
+                    <div class="win-hdr"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="win-ttl">class.jpp</div></div>
+                    <pre><code id="txt-struct"><span class="j-dir">@USING::STD</span>
+
+<span class="j-kw">__class__</span> Users <span class="j-kw">in</span> {
+    id: <span class="j-type">type.integer</span>:
+    name: <span class="j-type">type.stringer</span>:
+};
+
+<span class="j-kw">quit.program.uwu</span>(<span class="j-num">0</span>);</code></pre>
+                    <button class="btn-copy" onclick="copy('struct')">Copy Code</button>
+                </div>
+            </div>
+        </main>
+        <section id="about-me" class="card">
+            <h2>👤 Developer Profile</h2>
+            <div class="dev-title" style="font-size: 1.2rem; font-weight: 800; color: var(--primary); margin-bottom: 8px;">"NN - Developer Java++ and MutOS"</div>
+            <p style="color: var(--text-muted); line-height: 1.6;">Focusing on core abstract stack runtime environments, structured low-level systems layout representations, and custom sandboxed architectures.</p>
+        </section>
+    </div>
+    <script>
+        function tab(e, id) {
+            const c = document.getElementsByClassName("tab-content");
+            for (let i = 0; i < c.length; i++) c[i].classList.remove("active");
+            const b = document.getElementsByClassName("tab-btn");
+            for (let i = 0; i < b.length; i++) b[i].classList.remove("active");
+            document.getElementById(id).classList.add("active");
+            e.currentTarget.classList.add("active");
+        }
+        function copy(key) {
+            const node = document.getElementById('txt-' + key);
+            if (!node) return;
+            const text = node.textContent.trim();
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => alert("Copied to clipboard!"));
+            } else {
+                const el = document.createElement("textarea"); el.value = text; el.style.position = "fixed"; el.style.opacity = "0";
+                document.body.appendChild(el); el.focus(); el.select(); document.execCommand('copy'); document.body.removeChild(el);
+                alert("Copied to clipboard!");
+            }
+        }
+    </script>
+</body>
+</html>

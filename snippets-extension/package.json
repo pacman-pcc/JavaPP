@@ -1,0 +1,30 @@
+{
+  "name": "javapp-lang",
+  "displayName": "Java++ Support",
+  "version": "0.0.1",
+  "publisher": "myself",
+  "description": "Official language support, syntax highlighting, and code snippets for Java++ (JPP).",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pacman-pcc/javapp"
+  },
+  "engines": { "vscode": "^1.80.0" },
+  "categories": ["Programming Languages", "Snippets"],
+  "contributes": {
+    "languages": [{
+      "id": "javapp",
+      "aliases": ["Java++"],
+      "extensions": [".jpp"]
+    }],
+    "grammars": [{
+      "language": "javapp",
+      "scopeName": "source.jpp",
+      "path": "./javapp.tmLanguage.json"
+    }],
+    "snippets": [{
+      "language": "javapp",
+      "path": "./snippets/javapp.code-snippets"
+    }]
+  }
+}
+

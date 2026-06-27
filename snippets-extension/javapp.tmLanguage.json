@@ -1,0 +1,106 @@
+{
+  "$schema": "https://githubusercontent.com",
+  "name": "Java++",
+  "scopeName": "source.jpp",
+  "fileTypes": ["jpp"],
+  "patterns": [
+    {
+      "name": "comment.line.double-slash.jpp",
+      "match": "//.*$"
+    },
+    {
+      "name": "keyword.control.directive.jpp",
+      "match": "@USING::[A-Za-z0-9_]+"
+    },
+    {
+      "name": "keyword.control.conditional.jpp",
+      "match": "\\bnew\\.if\\.typedefender\\b"
+    },
+    {
+      "name": "keyword.control.loop.jpp",
+      "match": "\\bnew\\.(looping|for\\.looping)\\b"
+    },
+    {
+      "name": "keyword.control.lifecycle.jpp",
+      "match": "\\bquit\\.program\\.uwu\\b"
+    },
+    {
+      "name": "keyword.other.declaration.jpp",
+      "match": "\\bnew\\.(variables|constant)\\.create\\.stack\\b|\\bnew\\.array\\b"
+    },
+    {
+      "name": "storage.type.struct.jpp",
+      "match": "\\b__class__\\b"
+    },
+    {
+      "name": "keyword.other.struct.jpp",
+      "match": "\\bin\\b"
+    },
+    {
+      "name": "entity.name.function.array.jpp",
+      "match": "[a-zA-Z0-9_]+\\.append(?=\\()"
+    },
+    {
+      "name": "support.function.io.jpp",
+      "match": "\\b(print\\.consolewrite\\.puts|input\\.new\\.users\\.putss)\\b"
+    },
+    {
+      "name": "storage.type.primitive.jpp",
+      "match": "\\btype\\.(integer|stringer|floating|boolean|characters)\\b"
+    },
+    {
+      "name": "string.quoted.double.special.jpp",
+      "begin": "\"",
+      "end": "\"!",
+      "patterns": [
+        {
+          "name": "constant.character.escape.jpp",
+          "match": "\\\\."
+        }
+      ]
+    },
+    {
+      "name": "string.quoted.double.jpp",
+      "begin": "\"",
+      "end": "\"",
+      "patterns": [
+        {
+          "name": "constant.character.escape.jpp",
+          "match": "\\\\."
+        }
+      ]
+    },
+    {
+      "name": "variable.other.bracket.jpp",
+      "match": "[a-zA-Z0-9_]+\\[[a-zA-Z0-9_]+\\]"
+    },
+    {
+      "name": "constant.numeric.jpp",
+      "match": "\\b\\d+(\\.\\d+)?\\b"
+    },
+    {
+      "name": "constant.language.boolean.jpp",
+      "match": "\\b(true|false)\\b"
+    },
+    {
+      "name": "keyword.operator.increment-decrement.jpp",
+      "match": "\\b(plusplus|minmin)\\b"
+    },
+    {
+      "name": "keyword.operator.comparison.jpp",
+      "match": "(==|<|>)"
+    },
+    {
+      "name": "keyword.operator.assignment.jpp",
+      "match": "(=)"
+    },
+    {
+      "name": "keyword.operator.arithmetic.jpp",
+      "match": "(\\+|-|/|\\*)"
+    },
+    {
+      "name": "punctuation.section.bracket.jpp",
+      "match": "(\\{|\\}|\\(|\\))"
+    }
+  ]
+}

@@ -1,0 +1,179 @@
+{
+  "Variables Create Stack": {
+    "prefix": "new.variables.create.stack",
+    "body": [
+      "new.variables.create.stack type.${1|integer,stringer,floating,boolean,characters|} ${2:varName} = ${3:value};"
+    ],
+    "description": "Create a new variable on the Java++ stack"
+  },
+  "Variables Create Stack Short": {
+    "prefix": "newvar",
+    "body": [
+      "new.variables.create.stack type.${1|integer,stringer,floating,boolean,characters|} ${2:varName} = ${3:value};"
+    ],
+    "description": "Short prefix to create a new variable on the stack"
+  },
+  "Constant Create Stack": {
+    "prefix": "new.constant.create.stack",
+    "body": [
+      "new.constant.create.stack type.${1|integer,stringer,floating,boolean,characters|} ${2:CONST_NAME} = ${3:value};"
+    ],
+    "description": "Create a new immutable constant on the Java++ stack"
+  },
+  "Constant Create Stack Short": {
+    "prefix": "newconst",
+    "body": [
+      "new.constant.create.stack type.${1|integer,stringer,floating,boolean,characters|} ${2:CONST_NAME} = ${3:value};"
+    ],
+    "description": "Short prefix to create a new constant on the stack"
+  },
+  "Print Console Write": {
+    "prefix": "print.consolewrite.puts",
+    "body": [
+      "print.consolewrite.puts(${1:\"message\"});"
+    ],
+    "description": "Print data to the standard output console"
+  },
+  "Print Console Write Short": {
+    "prefix": "print",
+    "body": [
+      "print.consolewrite.puts(${1:\"message\"});"
+    ],
+    "description": "Short prefix to print data to the console"
+  },
+  "Input New Users": {
+    "prefix": "input.new.users.putss",
+    "body": [
+      "input.new.users.putss(${1:varName})"
+    ],
+    "description": "Read standard input from the user"
+  },
+  "Input New Users Short": {
+    "prefix": "input",
+    "body": [
+      "input.new.users.putss(${1:varName})"
+    ],
+    "description": "Short prefix to read user input"
+  },
+  "If Type Defender": {
+    "prefix": "new.if.typedefender",
+    "body": [
+      "new.if.typedefender (${1:var} ${2|==,<,>|} ${3:target}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Conditional statement block (Type Defender)"
+  },
+  "If Type Defender Short": {
+    "prefix": "if",
+    "body": [
+      "new.if.typedefender (${1:var} ${2|==,<,>|} ${3:target}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Short prefix for conditional statement block"
+  },
+  "Looping While": {
+    "prefix": "new.looping",
+    "body": [
+      "new.looping (${1:condition}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Standard looping structures (While loop alternative)"
+  },
+  "Looping While Short": {
+    "prefix": "while",
+    "body": [
+      "new.looping (${1:condition}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Short prefix for looping while block"
+  },
+  "For Looping": {
+    "prefix": "new.for.looping",
+    "body": [
+      "new.for.looping (type.integer ${1:i} = ${2:0}; ${1:i} < ${3:10}; ${1:i} ${4|plusplus,minmin|}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "For looping construct with counter initialisation and step modifier"
+  },
+  "For Looping Short": {
+    "prefix": "for",
+    "body": [
+      "new.for.looping (type.integer ${1:i} = ${2:0}; ${1:i} < ${3:10}; ${1:i} ${4|plusplus,minmin|}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "Short prefix for counter-based looping construct"
+  },
+  "Array Create": {
+    "prefix": "new.array",
+    "body": [
+      "new.array ${1:arrName} ${2|_|} = {${3:elements}};"
+    ],
+    "description": "Declare a static-length or dynamic array allocation using underbar symbol"
+  },
+  "Array Create Short": {
+    "prefix": "newarr",
+    "body": [
+      "new.array ${1:arrName} ${2|_|} = {${3:elements}};"
+    ],
+    "description": "Short prefix to allocate a new array structure"
+  },
+  "Array Append": {
+    "prefix": "append",
+    "body": [
+      "${1:arrName}.append(${2:value});"
+    ],
+    "description": "Append a new parsed expression element into a dynamic array layout"
+  },
+  "Class Struct Definition": {
+    "prefix": "__class__",
+    "body": [
+      "__class__ ${1:ClassName} in {",
+      "\t${2:fieldName}: type.${3|integer,stringer,floating,boolean,characters|};",
+      "};"
+    ],
+    "description": "Define custom structural representation container model blueprints"
+  },
+  "Class Struct Definition Short": {
+    "prefix": "class",
+    "body": [
+      "__class__ ${1:ClassName} in {",
+      "\t${2:fieldName}: type.${3|integer,stringer,floating,boolean,characters|};",
+      "};"
+    ],
+    "description": "Short prefix to define structural representation blueprints"
+  },
+  "Quit Program UWU": {
+    "prefix": "quit.program.uwu",
+    "body": [
+      "quit.program.uwu(${1:0});"
+    ],
+    "description": "Terminate environment runtime processes instantly using sys exit code"
+  },
+  "Quit Program UWU Short": {
+    "prefix": "uwu",
+    "body": [
+      "quit.program.uwu(${1:0});"
+    ],
+    "description": "Short expression token shortcut variant for quick script exit execution"
+  },
+  "Special String Type": {
+    "prefix": "str!",
+    "body": [
+      "\"${1:text}\"!"
+    ],
+    "description": "Special variant format sequence string literals parsed by sub-string slicing"
+  },
+  "Directive Using": {
+    "prefix": "@USING",
+    "body": [
+      "@USING::${1:LIB_NAME}"
+    ],
+    "description": "Include explicit dependencies header namespaces modules components"
+  }
+}
