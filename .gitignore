@@ -1,0 +1,4 @@
+./venv
+./interpreter.build
+./interpreter.dist
+./interpreter.onefile-build
