@@ -1,0 +1,13 @@
+@USING::STD
+
+
+// Dynamical type
+new.variables.create.stack age = 25
+new.constant.create.stack name = "Mike"
+
+print.consolewrite.puts(name)
+print.consolewrite.puts(age)
+
+new.if.typedefender (age == 25) {
+    print.consolewrite.puts("Age is exactly 25"!)
+}

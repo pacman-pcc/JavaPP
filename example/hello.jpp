@@ -1,0 +1,5 @@
+@USING::STD
+
+print.consolewrite.puts("Hello, world"!);
+
+quit.program.uwu(0);

@@ -1,0 +1,11 @@
+@USING::STD
+
+// Create dynamic array
+new.array items _ = {10, 20, 30}
+
+// Index
+print.consolewrite.puts(items[0])
+
+// Add elements
+items.append(40)
+print.consolewrite.puts(items[3])

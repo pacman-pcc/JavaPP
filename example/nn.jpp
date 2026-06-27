@@ -1,0 +1,25 @@
+@USING::STD
+@USING::MATH // Haha libs :)
+
+print.consolewrite.puts("Running NN linear layer mock...");
+
+new.array inputs 3 = {1, 2, 3}; // Base array
+new.array weights _ = {0, 0, 0}; // Dynamic array
+
+weights.append(0); // Manipulate is array
+weights[0] = 0.5;
+weights[1] = 0.1;
+weights[2] = 0.9;
+
+new.variables.create.stack type.integer counter = 0;
+
+new.for.looping (type.integer i = 0; i < 5; iplusplus) {
+    print.consolewrite.puts("Current index is: ");
+    print.consolewrite.puts(i);
+    total_sum + 1;
+}
+
+print.consolewrite.puts("Resulting neuron layer sum: ");
+print.consolewrite.puts(5);
+
+quit.program.uwu(0);
