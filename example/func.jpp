@@ -1,0 +1,10 @@
+@USING::STD
+
+new.function.script Test() {
+    @USING::STD
+    print.consolewrite.puts("Hello, Java++");
+}
+Test();
+Test();
+Test();
+quit.program.uwu(0);

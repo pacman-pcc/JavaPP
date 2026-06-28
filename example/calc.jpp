@@ -2,32 +2,32 @@
 
 print.consolewrite.puts("--- ENTERPRISE LINEAR CALCULATOR 2026 ---"!);
 
-// Ініціалізуємо змінні під дані
+// Variables
 new.variables.create.stack num1 type.integer = 0;
 new.variables.create.stack num2 type.integer = 0;
 new.variables.create.stack userChoice type.integer = 0;
 new.variables.create.stack result type.integer = 0;
 
-// Послідовне введення даних через твій оригінальний метод
+// Input
 input.new.users.putss("Enter First Number", num1);
 input.new.users.putss("Enter Second Number", num2);
 
 print.consolewrite.puts("Select operation: 1 for PLUS, 2 for MINUS"!);
 input.new.users.putss("Enter operation code", userChoice);
 
-// Блок обробки додавання
+// Block add
 new.if.typedefender (userChoice == 1) {
     result = num1 + num2;
     print.consolewrite.puts("Calculation Result is:"!);
     print.consolewrite.puts(result);
 }
 
-// Блок обробки віднімання
+// Block minus
 new.if.typedefender (userChoice == 2) {
     result = num1 - num2;
     print.consolewrite.puts("Calculation Result is:"!);
     print.consolewrite.puts(result);
 }
 
-// Обов'язкове фінальне завершення програми
+// Exit program
 quit.program.uwu(0);

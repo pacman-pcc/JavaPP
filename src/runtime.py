@@ -4,13 +4,57 @@ VARIABLES = {} # Variables
 CONSTANTS = set() # constants
 STRUCT_DEFS = {} # Structs
 ARRAYS = {} # ARRAYS
-LOOP_STACK = []
+LOOP_STACK = [] # LOOP
+FUNCTIONS = {} # Functions
+LIB_FUNCS = {} # Libs
 
 def get_parsed_value(x): # function parsed value
     x = x.strip().replace("{", "").strip()
-
     if x.endswith(';'):
         x = x[:-1].strip()
+
+    if "(" in x and x.endswith(")"):
+        func_name = x.split("(")[0].strip()
+
+        if func_name in FUNCTIONS:
+            start_fn = x.find('(') + 1
+            end_fn = x.rfind(")")
+            args_raw_fn = x[start_fn:end_fn].split(",")
+
+            func_data = FUNCTIONS[func_name]
+            passed_vals = [get_parsed_value(a) for a in args_raw_fn if a.strip()]
+
+            old_args_backup = {}
+            for name, val in zip(func_data["args"], passed_vals):
+                if name in VARIABLES:
+                    old_args_backup[name] = VARIABLES[name]
+                VARIABLES[name] = val
+
+            run_instructions(func_data["body"])
+
+            for name in func_data["args"]:
+                if name in old_args_backup:
+                    VARIABLES[name] = old_args_backup[name]
+                else:
+                    VARIABLES.pop(name, None)
+
+            return ""
+
+        if func_name in LIB_FUNCS:
+            start = x.find('(') + 1
+            end = x.rfind(')')
+            args_raw = x[start:end].split(',')
+
+            args = []
+            for a in args_raw:
+                if not a.strip(): continue
+                val = get_parsed_value(a.strip())
+                if isinstance(val, str) and val.replace('.', '', 1).isdigit():
+                    val = float(val) if '.' in val else int(val)
+                args.append(val)
+            
+            res_val = LIB_FUNCS[func_name](*args)
+            return res_val if res_val is not None else ""
 
     if x.startswith('"') and x.endswith('"!'):
         return x[1:-2]
@@ -33,6 +77,16 @@ def get_parsed_value(x): # function parsed value
     return x
 
 def run_instructions(lines): # based function
+    first_meaningful_line = None
+    for li in lines:
+        if li.strip():
+            first_meaningful_line = li.strip()
+            break;
+    
+    if first_meaningful_line != "@USING::STD":
+        print("Error: Missing required base lib @USING::STD")
+        sys.exit(1)
+    
     line_idx = 0
     while line_idx < len(lines):
         line = lines[line_idx].strip()
@@ -42,9 +96,33 @@ def run_instructions(lines): # based function
             line = line[:-1].strip()
 
         if line.startswith("@USING") or not line:
+            lib_name = line.replace("@USING::", "").strip()
+
+            if lib_name == "STD":
+                line_idx += 1
+                continue
+            
+            lib_path = f"./src/libs/{lib_name}.py"
+            try:
+                with open(lib_path, "r", encoding="utf-8") as f:
+                    context = {
+                        "LIB_FUNCS": LIB_FUNCS,
+                        "VARIABLES": VARIABLES,
+                        "ARRAYS": ARRAYS
+                    }
+                    exec(f.read(), context, context)
+            except FileNotFoundError:
+                print(f"Error: Library not found at {lib_path}")
+                sys.exit(1)
+
             line_idx += 1
             continue
 
+        if "(" in line and line.endswith(")") and not line.startswith("new.") and not line.startswith("print.") and not line.startswith("input.") and not "quit." in line:
+            print(get_parsed_value(line)) 
+            line_idx += 1
+            continue
+        
         if line.startswith("new.variables.create.stack"):
             clean = line.replace("new.variables.create.stack", "").replace(';', "").strip()
             parts = clean.split("=")
@@ -104,6 +182,46 @@ def run_instructions(lines): # based function
             code = line[start:end].strip()
             sys.exit(int(code))
             line_idx += 1
+
+        elif line.startswith("new.function.script"):
+            clean = line.replace("new.function.script", "").strip()
+            func_name = clean.split("(")[0].strip()
+
+            start_args = clean.find('(') + 1
+            end_args = clean.rfind(")") 
+            args_raw_fn = clean[start_args:end_args].split(',')
+
+            saved_args = []
+            for arg in args_raw_fn:
+                arg = arg.strip()
+                if arg:
+                    parts = arg.split()
+                    saved_args.append(parts[-1].strip())
+
+            func_body = []
+            line_idx += 1
+            brace_count = 1
+
+            while line_idx < len(lines):
+                body_line = lines[line_idx].strip()
+                
+                if "{" in body_line:
+                    brace_count += body_line.count("{")
+                if "}" in body_line:
+                    brace_count -= body_line.count("}")
+                    if brace_count == 0:
+                        line_idx += 1
+                        break
+                
+                func_body.append(body_line)
+                line_idx += 1
+
+            FUNCTIONS[func_name] = {
+                "args": saved_args,
+                "body": func_body
+            }
+            continue
+
 
         elif line.startswith("__class__"):
             clean = line.replace("__clase__", "").replace("{", "").replace("in", "").strip()
@@ -280,6 +398,7 @@ def run_instructions(lines): # based function
                 VARIABLES[var_name] = get_parsed_value(expression)
 
             line_idx += 1
+            continue
 
         elif "minmin" in line:
             var_name = line.replace("minmin", "").replace(";", "").strip()

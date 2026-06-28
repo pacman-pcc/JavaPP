@@ -165,7 +165,7 @@
   "Special String Type": {
     "prefix": "str!",
     "body": [
-      "\"${1:text}\"!"
+      "\"\\${1:text}\"!"
     ],
     "description": "Special variant format sequence string literals parsed by sub-string slicing"
   },

@@ -1,0 +1,7 @@
+@USING::STD
+@USING::RAND
+
+new.array items _ = {1, 2, 9};
+new.variables.create.stack items_choice = rand.choices("items");
+
+print.consolewrite.puts(items_choice);

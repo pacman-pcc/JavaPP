@@ -1,4 +1,5 @@
-./venv
+./.venv
 ./interpreter.build
 ./interpreter.dist
 ./interpreter.onefile-build
+.vscode

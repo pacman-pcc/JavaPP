@@ -79,7 +79,47 @@
             <div class="tabs">
                 <button class="tab-btn active" onclick="tab(event, 'hello')">Hello World</button>
                 <button class="tab-btn" onclick="tab(event, 'struct')">Classes (__class__)</button>
+                <button class="tab-btn" onclick="tab(event, 'os_funcs')">OS Lib</button>
+                <button class="tab-btn" onclick="tab(event, 'funcs_demo')">Functions</button>
             </div>
+
+            <div id="os_funcs" class="tab-content">
+                <div class="window">
+                    <div class="win-hdr">
+                        <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                        <div class="win-ttl">os_test.jpp</div>
+                    </div>
+                    <pre><code id="txt-os_funcs"><span class="j-dir">@USING::STD</span>
+<span class="j-dir">@USING::POS</span>
+
+<span class="j-kw">create.fullydirectory</span>(<span class="j-str">"/mnt/basic/Javapp/Loxe"</span>);
+
+<span class="j-kw">new.variables.create.stack my_cwd =</span><span class="j-str"> oh.my.cwd()</span>;
+<span class="j-kw">print.consolewrite.puts</span>(<span class="j-str">my_cwd</span>);
+<span class="j-kw">quit.program.uwu</span>(<span class="j-num">0</span>);</code></pre>
+                <button class="btn-copy" onclick="copy('os_funcs')">Copy Code</button>
+                </div>
+            </div>
+
+            <div id="funcs_demo" class="tab-content">
+                <div class="window"">
+                    <div class="win-hdr"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="win-ttl">functions.jpp</div></div>
+                    <pre><code id="txt-funcs_demo"><span class="j-dir">@USING::STD</span>
+
+<span class="j-kw">new.function.script</span> Test() {
+    <span class="j-dir">@USING::STD</span>
+    <span class="j-kw">print.consolewrite.puts</span>(<span class="j-str">"Hello, Java++"</span>);
+}
+
+Test();
+Test();
+Test();
+
+<span class="j-kw">quit.program.uwu</span>(<span class="j-num">0</span>);</code></pre>
+        <button class="btn-copy" onclick="copy('funcs_demo')">Copy Code</button>
+    </div>
+</div>
+
             <div id="hello" class="tab-content active">
                 <div class="window">
                     <div class="win-hdr"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="win-ttl">hello.jpp</div></div>

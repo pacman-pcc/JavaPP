@@ -1,0 +1,12 @@
+@USING::STD
+@USING::POS
+@USING::TIME
+
+print.consolewrite.puts("Starting automation..."!);
+create.fullydirectory("/mnt/basic/Javapp/TimedFolder");
+
+// Заморажуємо потік на 2 секунди
+time.freeze.seconds(2);
+
+print.consolewrite.puts("Done! Exiting..."!);
+quit.program.uwu(0);

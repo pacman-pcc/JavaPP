@@ -1,92 +1,134 @@
-# JAVA++ - Language guide.
+# JAVA++ (JPP) — Esoteric Programming Language
 
-This is the official guide to Java++.
+**Java++** is an imperative, interpreted esoteric programming language designed and implemented by **NoyName**. 
 
-## 1. File Structure.
+Despite its esoteric nature and syntax, the language is fully functional and computationally powerful enough to implement complex algorithms, including a fully working. The reference interpreter is written entirely in Python.
 
-All files must end with the `.jpp` extension.
+---
 
-### Directives
+## 1. File Structure & Directives
 
-You can use `@USING::` at the beginning of lines. (For now, this is a stub, to be honest, but later there will be libraries, if there are any at all.)
+All source files must use the `.jpp` extension. 
+
+You can use the `@USING::` directive at the beginning of your lines to import modules (currently works as a stub for future library support).
 
 ```guide.jpp
 @USING::STD
-@USING::MATH
+@USING::POS
 ```
 
-## 2. Varibles and Constants
+---
 
-The interpreter uses simple storage under the hood to keep your data.
+## 2. Variables and Constants
+
+The interpreter manages data using a dynamic storage model under the hood. Do not specify data types when creating variables; the parser handles types automatically based on the assigned value.
 
 ### Creating Variables
-
 ```var.jpp
-// new.variables.create.stack [type] [name];
-new.variables.create.stack type.integer age = 25;
+// Syntax: new.variables.create.stack [name] = [value]
+new.variables.create.stack age = 25
 ```
 
-- Type: type.integer (int), type.floating (float), type.stringer(string), type.boolean(bool).
-
-### Creating constant
-
+### Creating Constants
+Constants are immutable and will throw an error if you attempt to overwrite them.
 ```const.jpp
-// new.constant.create.stack [type] [name];
-new.constant.create.stack type.stringer name = "Hello, Mike";
+// Syntax: new.constant.create.stack [name] = [value]
+new.constant.create.stack name = "Hello, Mike"
 ```
+
+---
 
 ## 3. Arrays
 
 ### Initialization
+Java++ supports both dynamic arrays and padded, fixed-size arrays.
 
 ```Array.jpp
-// Dynamic array
-new.array items _ = {10, 20, 30};
+// Dynamic array (unlimited length)
+new.array items _ = {10, 20, 30}
 
-// Padded array
-new.array items 5 = {10, 20};
+// Padded array (automatically padded with zeros up to length 5)
+new.array items 5 = {10, 20}
 ```
-### Modify
-* **Append**: Use `.append(value)` to add something to the end of your array.
-* **Read**: Read elements using standard `array[index]` syntax. You can also pass a variable inside the brackets.
+
+### Modification & Reading
+* **Append:** Use `.append(value)` to push an element to the end of the array.
+* **Read:** Access elements using standard `array[index]` syntax with a specific integer index.
+
+---
 
 ## 4. Control Flow
 
+Conditional branching is handled via the `new.if.typedefender` statement.
+
 ```if.jpp
 new.if.typedefender (age == 25) {
-    print.console.writeline.puts("It is 25!); // Print 
+    print.consolewrite.puts("Age is exactly 25"!)
 }
 ```
 
-### 5. Loops
+---
 
-* **While**: `new.looping (condition)` runs until the condition inside brackets becomes false.
-* **For**: `new.for.looping (type.integer i = 0; i < 10; i plusplus)` splits the block by semicolons, creates the variable, checks the condition, and modifies it using `plusplus` (+1) or `minmin` (-1) keywords when it hits the closing `}` bracket.
+## 5. Loops
+
+### For Loop
+The loop statement requires the `type.integer` keyword for the iterator variable. Code block modification utilizes `plusplus` (+1) or `minmin` (-1) keywords.
 
 ```looping.jpp
 new.for.looping (type.integer i = 0; i < 3; i plusplus) {
-    print.consolewrite.puts(i);
+    print.consolewrite.puts(i)
 }
 ```
 
-### 6. Input and Output
+### While Loop
+Runs continuously as long as the specified condition remains true.
+```while.jpp
+new.looping (condition)
+```
+
+---
+
+## 6. Input and Output
 
 ### Print to Console
-Takes whatever is inside `( )`, evaluates the value (whether it's a string, a number, a variable, or an array element), and prints it out.
+Evaluates the expression inside `( )` and outputs it to the terminal. To print a clean string without raw quotes appearing in the console, terminate your string with `"!`.
+
 ```hello.jpp
-print.consolewrite.puts("Hello, world"!);
+print.consolewrite.puts("Hello, world"!)
 ```
 
 ### User Input
-Reads a string or number typed by the user in the terminal and puts it straight into your variable.
-```json.jpp
+Reads terminal input from the user and assigns it directly to a variable.
+```input.jpp
 input.new.users.putss(counter)
 ```
 
+---
 
-### 7. Exit program
+## 7. Execution Control
 
-To stop the execution completely at any point, use `quit.program.uwu` with an exit code inside the brackets.
+To immediately terminate program execution with a specific exit code, use `quit.program.uwu`.
+
 ```exit.jpp
+quit.program.uwu(0)
+```
+
+---
+
+## 8. Function
+
+```func.jpp
+@USING::STD
+
+new.function.script Test() {
+    @USING::STD
+    print.consolewrite.puts("Hello, Java++");
+}
+Test();
+Test();
+Test();
 quit.program.uwu(0);
 ```
+
+## Credits
+Developed by **NoyName** (2026).
